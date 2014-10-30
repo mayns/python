@@ -64,7 +64,7 @@ def findaway(current_node):
             if not next_node:
                 return 0
             return findaway(next_node)
-    except Exception, ex:
+    except Exception:
         return u'NO'
 
 print u'NO' if (start_node not in nodes) or (final_node not in nodes) or not findaway(start_node) else u'YES'
