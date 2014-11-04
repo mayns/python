@@ -10,23 +10,26 @@ ops = []
 opd = []
 
 try:
-    while len(l):
+    while 1:
+        if not l:
+            break
         x = l.pop()
         if x in operators:
             ops.append(x)
         else:
             opd.append(x)
-            if l:
-                n_op = l.pop()
-                if n_op in operators:
-                    ops.append(n_op)
-                else:
-                    new_exp = eval(n_op + ops.pop() + opd.pop())
-                    opd.append(str(new_exp))
+            if not l:
+                break
+            n_op = l.pop()
+            if n_op in operators:
+                ops.append(n_op)
             else:
-                while ops:
-                    new_exp = eval(opd.pop() + ops.pop() + opd.pop())
-                    opd.append(str(new_exp))
+                new_exp = eval(n_op + ops.pop() + opd.pop())
+                opd.append(str(new_exp))
+    while ops:
+        new_exp = eval(opd.pop() + ops.pop() + opd.pop())
+        opd.append(str(new_exp))
+
     if len(opd) > 1:
         raise
     else:
