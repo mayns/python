@@ -36,9 +36,7 @@ def paid_stairs(costs):
 
     return costs[-1] + min([i.pop() for i in mins.values()])
 
-if len(costs) < step:
+if len(costs) <= step:
     print costs[-1]
-elif len(costs) == step:
-    print costs[-1] + min(costs)
 else:
     print paid_stairs(costs[:])
