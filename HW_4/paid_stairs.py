@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import functools
 from collections import defaultdict
 
 __author__ = 'mayns'
@@ -12,6 +13,17 @@ k = len(costs)
 mins = defaultdict(list)
 
 
+def memoize(f):
+    cache = {}
+    @functools.wraps(f)
+    def memf(*x):
+        y = tuple(*x)
+        if y not in cache:
+            cache[y] = f(y)
+        return cache[y]
+    return memf
+
+@memoize
 def paid_stairs(costs):
 
     if not costs:
