@@ -14,7 +14,9 @@ __author__ = 'oks'
 
 numbers = raw_input()
 
-numbers = map(int, numbers.split(u' '))
+numbers = numbers.split(u' ')
 
 signs = [u'+', u'-']
+
+# 123 234 345 12
 
