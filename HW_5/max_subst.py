@@ -14,12 +14,13 @@ counter = 1
 
 while tester[:-1]:
     c = tester.pop(0)
-    print cur_max
 
     if (c > 0) and (tester[0] >= c) and (c > cur_max):
         print u'(c > 0) and (tester[0] > c) and (c > cur_max): ', c
         cur_max = c
         max_ind = len(tester)
+    if (c > 0) and (tester[0] < 0):
+        pass
     if (c < 0) and (tester[0] > 0) and (c + counter > cur_max):
         print u'(c < 0) and (tester[0] > 0) and (c + counter > cur_max)', c, tester[0]
         cur_max = c + counter
@@ -33,9 +34,8 @@ while tester[:-1]:
         print u'ELSE'
         continue
 
-print counter
-print cur_max
-print max_ind
+cur_max = counter if counter > cur_max else cur_max
+print r[max_ind:max_ind+cur_max]
 
 
 #
