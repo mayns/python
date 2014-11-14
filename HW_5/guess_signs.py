@@ -26,6 +26,12 @@ from itertools import product
 
 combs = list(product(signs, repeat=complexity-2))
 
+# -----------
+# code for bitmap
+# combs = []
+# rn = [str(bin(i))[2:] for i in xrange(2**complexity-2)]
+# -----------
+
 enough = 0
 
 for comb in combs:
