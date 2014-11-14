@@ -41,3 +41,5 @@ for comb in combs:
         break
 else:
     print u'NO'
+    
+# use bitmap instead of product
