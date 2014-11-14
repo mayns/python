@@ -11,3 +11,5 @@ d = defaultdict(list)
 for w in s:
     d[len(set(w))].append(w)
 print u' '.join(reduce(lambda x, y: x+y, d.values()))
+
+# print u' '.join(sorted(raw_input().split(), key=lambda s: len(set(s))))
