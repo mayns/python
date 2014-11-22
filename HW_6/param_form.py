@@ -13,10 +13,14 @@ params_values = []
 f_max = None
 
 for param in params:
-    p = param.split(u'=')
-    point = p[1].split(u',')
-    params_keys.append(p[0])
-    params_values.append(xrange(int(point[0]), int(point[1])+1) if len(point) > 1 else [int(point[0])])
+    # WAT???
+    try:
+        p = param.split(u'=')
+        point = p[1].split(u',')
+        params_keys.append(p[0])
+        params_values.append(xrange(int(point[0]), int(point[1])+1) if len(point) > 1 else [int(point[0])])
+    except:
+        continue
 
 combs = product(*params_values)
 
