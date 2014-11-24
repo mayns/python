@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from itertools import product
+from itertools import *
 
 __author__ = 'oks'
 
@@ -26,8 +26,14 @@ bases = {
     16: u'G',
 }
 
-b = [bases[k] for k in xrange(n)]
+b = [bases[y] for y in xrange(n)]
 
 r = product(b, repeat=k)
 
-for i in r: print u''.join(i)
+for i in r:
+    s = u''.join(i)
+    s = s.lstrip(u'0')
+    if len(s) == k:
+        print s
+    if len(s) > k:
+        break
