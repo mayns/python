@@ -7,22 +7,18 @@
 после слова в скобках без пробела следует номер — позиция
 последнего вхождения.
 """
-
 __author__ = 'mayns'
-from itertools import compress
-
-# qwe sdf tyu qwe sdf try sdf qwe sdf rty sdf wer sdf wer
+from itertools import dropwhile
+from collections import Counter
 
 words = raw_input().split(u' ')
+
 l = len(words)
+w = Counter(words)
 
-massive = {}
+w1 = map(lambda x: (x[0], dropwhile(lambda y: words[y] != x[0], reversed(xrange(l))).next())
+         if x[1] > 1 else x[0], w.items())
 
-for i, w in enumerate(reversed(words)):
-    if w not in massive.keys() and words.count(w) > 1:
-        massive.setdefault(w, l - i - 1)
-        continue
+print u' '.join(map(lambda w: u'{}({})'.format(w[0], w[1]) if isinstance(w, tuple) else w,
+                    sorted(w1, key=lambda x: words.index(x[0]) if isinstance(x, tuple) else words.index(x))))
 
-selectors = map(lambda x: 1 if words.count(x[1]) == 1 or words.index(x[1]) == x[0] else 0, enumerate(words))
-
-print u' '.join(compress(map(lambda w: u'{}({})'.format(w, massive[w]) if massive.get(w) else w, words), selectors))
