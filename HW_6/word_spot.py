@@ -8,17 +8,29 @@
 последнего вхождения.
 """
 __author__ = 'mayns'
-from itertools import dropwhile
-from collections import Counter
+# import timeit
 
-words = raw_input().split(u' ')
-
+words = raw_input().split(' ')
+# s = timeit.default_timer()
 l = len(words)
-w = Counter(words)
+met = []
+d = {}
 
-w1 = map(lambda x: (x[0], dropwhile(lambda y: words[y] != x[0], reversed(xrange(l))).next())
-         if x[1] > 1 else x[0], w.items())
+for i in xrange(l):
+    if words[i] in met:
+        d[words[i]] = str(i)
+        continue
+    met.append(words[i])
 
-print u' '.join(map(lambda w: u'{}({})'.format(w[0], w[1]) if isinstance(w, tuple) else w,
-                    sorted(w1, key=lambda x: words.index(x[0]) if isinstance(x, tuple) else words.index(x))))
+string = ''
+for m in met:
+    if d.get(m):
+        string += m + '(' + d[m] + ')' + ' '
+        continue
+    string += m + ' '
 
+print string
+
+# print u' '.join(map(lambda x: u'{}({})'.format(x, d[x]) if x in d else x, met))
+# print u' '.join(map(lambda x: x + '(' + str(d[x]) + ')' if x in d else x, met))
+# print timeit.default_timer() - s
