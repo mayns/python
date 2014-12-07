@@ -24,6 +24,7 @@ class Pea(object):
         self.a = a
         self.b = b
         self.c = c
+        self.r = self.calc_rad()
 
     def calc_rad(self):
         p = (self.a + self.b + self.c) / 2.0
@@ -48,11 +49,13 @@ class TrigonPea(Trigon, Pea):
         square = Pea.square(self)
         return perimeter * square
 
-# t = Trigon(3, 4, 5)
-# p = Pea(3, 4, 5)
-# z = TrigonPea(3, 4, 5)
-# print "{:.6f}".format(t.square())
-# print "{:.6f}".format(t.perimeter())
-# print "{:.6f}".format(p.square())
-# print "{:.6f}".format(z.volume())
-# print "{:.6f}".format(z.square())
+if __name__ == u'__main__':
+
+    t = Trigon(3, 4, 5)
+    p = Pea(3, 4, 5)
+    z = TrigonPea(3, 4, 5)
+    print "{:.6f}".format(t.square())
+    print "{:.6f}".format(t.perimeter())
+    print "{:.6f}".format(p.square())
+    print "{:.6f}".format(z.volume())
+    print "{:.6f}".format(z.square())
