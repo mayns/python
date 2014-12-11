@@ -32,20 +32,18 @@ class Pea(object):
         return (self.a * self.b * self.c) / (4 * heron)
 
     def square(self):
-        r = self.calc_rad()
+        r = self.r if hasattr(self, u'r') else self.calc_rad()
         return math.pi * r ** 2
 
     def perimeter(self):
-        r = self.calc_rad()
+        r = self.r if hasattr(self, u'r') else self.calc_rad()
         return 2 * math.pi * r
 
 
 class TrigonPea(Trigon, Pea):
-    def __init__(self, a, b, c):
-        super(TrigonPea, self).__init__(a, b, c)
 
     def volume(self):
-        perimeter = Trigon.perimeter(self)
+        perimeter = self.perimeter()
         square = Pea.square(self)
         return perimeter * square
 
